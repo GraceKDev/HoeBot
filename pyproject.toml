@@ -1,0 +1,24 @@
+[project]
+name = "hobot"
+version = "0.1.0"
+description = "bot for micah"
+authors = [
+    {name = "bippy"}
+]
+requires-python = ">=3.13"
+dependencies = [
+    "discord (>=2.3.2,<3.0.0)",
+    "dotenv (>=0.9.9,<0.10.0)",
+    "pytz (>=2026.1.post1,<2027.0)"
+]
+
+[tool.poetry]
+# ... existing config ...
+packages = [
+    { include = "modals", from = "src" },
+    { include = "src" }
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
