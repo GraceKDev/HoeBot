@@ -10,13 +10,13 @@ class BasicPaginator(View):
         await interaction.response.edit_message(content=self.pages[self.current_page],view=self)
 
     @discord.ui.button(label="⬅️",style=discord.ButtonStyle.secondary)
-    async def previous(self,interaction:discord.Interaction,button:Button):
+    async def previous(self,interaction:discord.Interaction):
         if self.current_page > 0:
             self.current_page -= 1
             await self.update(interaction)
             
     @discord.ui.button(label="➡️", style=discord.ButtonStyle.secondary)
-    async def next(self, interaction: discord.Interaction, button: discord.ui.Button):
+    async def next(self, interaction: discord.Interaction):
         if self.current_page < len(self.pages) - 1:
             self.current_page += 1
         await self.update(interaction)

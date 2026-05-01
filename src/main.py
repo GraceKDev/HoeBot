@@ -5,7 +5,11 @@ import os
 from dotenv import load_dotenv
 import discord
 from tasks.birthdayCheck import checkBirthdays
+import logging
+from util.logging import setup_logging
 
+setup_logging()
+logger = logging.getLogger(__name__)
 
 db_path = os.path.join(os.path.dirname(__file__), '..', 'src/db.json')
 db_path = os.path.abspath(db_path)
@@ -22,11 +26,12 @@ bot = botCommands.setup(intents)
 @bot.event
 async def on_ready():
     try:
+        # await bot.tree.sync(guild=discord.Object(id=774522422669344798))
         synced = await bot.tree.sync()
         bot.loop.create_task(checkBirthdays(bot))
-        print(f"Synced {len(synced)} commands")    
+        logger.info(f"Synced {len(synced)} commands")    
 
     except Exception as e:
-        print(f"Error syncing commands: {e}")
+        logger.error(f"Error syncing commands: {e}", exc_info=True)
 
 bot.run(os.getenv('TOKEN'))
