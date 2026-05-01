@@ -2,8 +2,8 @@ import os
 import discord
 from discord import Intents
 from discord.ext import commands
-from src.modals.AddGameComplete import AddGameCompleteModal
-from src.modals.Birthday import BirthdayModal
+from src.modals.AddGameComplete.AddGameCompleteModal import AddGameCompleteModal
+from src.modals.Birthday.BirthdayModal import BirthdayModal
 from src.util.commandUtil import getBirthdays, getCompletedGames, sortBirthdays,sortGames
 from src.util.logging import log_command
 from src.views.basicPaginator.BasicPaginator import BasicPaginator

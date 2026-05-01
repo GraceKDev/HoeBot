@@ -3,7 +3,6 @@ import discord
 from discord.ui import Modal, TextInput
 from src.util.commandUtil import setBirthday
 
-
 class BirthdayModal(Modal, title="Enter Your Birthday"):
     year = TextInput(label="Year", placeholder="e.g. 2005", required=False)
     month = TextInput(label="Month (1-12)", required=True)
