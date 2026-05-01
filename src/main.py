@@ -1,6 +1,6 @@
 
 import json
-import botCommands
+import botCommands as botCommands
 import os
 from dotenv import load_dotenv
 import discord
