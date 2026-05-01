@@ -17,7 +17,7 @@ def setup(intents: Intents) -> commands.Bot:
 	async def birth(interaction: discord.Interaction):
 		await interaction.response.send_modal(BirthdayModal())
 
-	@bot.tree.command(name="complete")
+	@bot.tree.command(name="complete", description="Add a completed game")
 	@log_command
 	async def complete(interaction: discord.Interaction):
 		await interaction.response.send_modal(AddGameCompleteModal())
@@ -35,7 +35,6 @@ def setup(intents: Intents) -> commands.Bot:
 			)
 			return
 		sorted_games = await sortGames(gamesComplete)
-		print(sorted_games)
 		game_list = []
 		for game_data in sorted_games:
 			title = game_data.get("title")
@@ -65,12 +64,11 @@ def setup(intents: Intents) -> commands.Bot:
 		if not users:
 			await interaction.response.send_message(
 				"No birthdays found for this server.",
-				ephemeral=hide
+				ephemeral=True
 			)
 			return
 		sorted_users = await sortBirthdays(users)
 		birthday_list = []
-		print(sorted_users)
 		for user_id, user_data in sorted_users:
 			birthday = user_data.get("birthday")
 			user = await bot.fetch_user(int(user_id))

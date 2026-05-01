@@ -1,5 +1,6 @@
 from datetime import datetime
 import json
+import logging
 async def setBirthday(guild_id, user_id, birthday):
 		try:
 			with open('src/db.json', 'r') as f:
@@ -14,7 +15,7 @@ async def setBirthday(guild_id, user_id, birthday):
 			with open('src/db.json', 'w') as f:
 				json.dump(data, f, indent=4)
 		except Exception as e:
-			print(e)
+			logging.error(f"Error setting birthday: {e}", exc_info=True)
 			return False
 		return True
 
@@ -22,7 +23,6 @@ async def addGameCompleted(guild_id, user_id, gameForm):
 		gameTitle = gameForm.get("title")
 		gamePlatform = gameForm.get("platform")
 		gamecompletionDate = gameForm.get("completionDate")
-		print(gamecompletionDate)
 		try:
 			with open('src/db.json', 'r') as f:
 				data = json.load(f)
@@ -42,7 +42,7 @@ async def addGameCompleted(guild_id, user_id, gameForm):
 			with open('src/db.json', 'w') as f:
 				json.dump(data, f, indent=4)
 		except Exception as e:
-			print(e)
+			logging.error(f"Error adding completed game: {e}", exc_info=True)
 			return False
 		return True
 
@@ -58,7 +58,7 @@ async def getCompletedGames(guild_id, user_id):
 			return []
 				
 		except Exception as e:
-			print(e)
+			logging.error(f"Error getting completed games: {e}", exc_info=True)
 			return []
 				
 
@@ -74,7 +74,7 @@ async def getBirthdays(guild_id):
 			else:
 				return {}
 		except Exception as e:
-			print(e)
+			logging.error(f"Error getting birthdays: {e}", exc_info=True)
 			return {}
 		
 async def getBirthdays(guild_id):
@@ -89,7 +89,7 @@ async def getBirthdays(guild_id):
 			else:
 				return {}
 		except Exception as e:
-			print(e)
+			logging.error(f"Error getting birthdays: {e}", exc_info=True)
 			return {}
 		
 async def sortBirthdays(dates):
@@ -97,7 +97,7 @@ async def sortBirthdays(dates):
 			sorted_birthdays = sorted(dates.items(), key=lambda x: x[1]["birthday"])
 			return sorted_birthdays
 		except Exception as e:
-			print(e)
+			logging.error(f"Error sorting birthdays: {e}", exc_info=True)
 			return dates
 		
 async def sortGames(games):
@@ -108,5 +108,5 @@ async def sortGames(games):
             reverse=True
         )
     except Exception as e:
-        print(e)
+        logging.error(f"Error sorting games: {e}", exc_info=True)
         return []
