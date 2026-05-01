@@ -1,7 +1,7 @@
 import discord
 
 from discord.ui import Modal, TextInput
-from util.commandUtil import setBirthday
+from src.util.commandUtil import setBirthday
 
 
 class BirthdayModal(Modal, title="Enter Your Birthday"):

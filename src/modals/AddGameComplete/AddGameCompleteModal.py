@@ -1,9 +1,9 @@
 from datetime import datetime
 import discord
 from discord.ui import Modal
-from util.commandUtil import addGameCompleted
+from src.util.commandUtil import addGameCompleted
 
-class AddGameCompleteModel(Modal, title="Add Completed Game"):
+class AddGameCompleteModal(Modal, title="Add Completed Game"):
     gameTitle = discord.ui.TextInput(label="Game Title", min_length=1, max_length=50, required=True)
     platform = discord.ui.TextInput(label="Platform", min_length=1, max_length=20, required=True)
     date = discord.ui.TextInput(label="Date", placeholder="DD/MM/YYYY", min_length=10, max_length=10, required=True)

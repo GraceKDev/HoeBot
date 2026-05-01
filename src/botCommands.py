@@ -2,11 +2,11 @@ import os
 import discord
 from discord import Intents
 from discord.ext import commands
-from modals.AddGameComplete.AddGameCompleteModel import AddGameCompleteModel
-from modals.Birthday.BirthdayModal import BirthdayModal
-from util.commandUtil import getBirthdays, getCompletedGames,sortBirthdays,sortGames
-from util.logging import log_command
-from views.basicPaginator.BasicPaginator import BasicPaginator
+from src.modals.AddGameComplete import AddGameCompleteModal
+from src.modals.Birthday import BirthdayModal
+from src.util.commandUtil import getBirthdays, getCompletedGames, sortBirthdays,sortGames
+from src.util.logging import log_command
+from src.views.basicPaginator.BasicPaginator import BasicPaginator
 
 
 def setup(intents: Intents) -> commands.Bot:
@@ -20,7 +20,7 @@ def setup(intents: Intents) -> commands.Bot:
 	@bot.tree.command(name="complete")
 	@log_command
 	async def complete(interaction: discord.Interaction):
-		await interaction.response.send_modal(AddGameCompleteModel())
+		await interaction.response.send_modal(AddGameCompleteModal())
 
 	@bot.tree.command(name="completed", description="List all the games you've completed")
 	@log_command

@@ -46,7 +46,7 @@ class TestBotCommands(unittest.IsolatedAsyncioTestCase):
         mock_interaction.response.send_message = AsyncMock()
         mock_member = MagicMock()
         mock_member.__str__.return_value = "TestUser"
-        mock_member.joined_at = "2022-01-01"
+        mock_member.joined_at.date = MagicMock(return_value="2022-01-01")
         await joined_cmd(mock_interaction, mock_member)
         mock_interaction.response.send_message.assert_awaited_with("TestUser joined on 2022-01-01")
 
