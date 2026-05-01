@@ -1,12 +1,12 @@
 
 import json
-import botCommands as botCommands
+import src.botCommands as botCommands
 import os
 from dotenv import load_dotenv
 import discord
-from tasks.birthdayCheck import checkBirthdays
+from src.tasks.birthdayCheck import checkBirthdays
 import logging
-from util.logging import setup_logging
+from src.util.logging import setup_logging
 
 setup_logging()
 logger = logging.getLogger(__name__)
